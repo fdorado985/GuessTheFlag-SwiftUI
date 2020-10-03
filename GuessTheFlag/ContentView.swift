@@ -9,12 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
   var body: some View {
-    ZStack {
-      Color.red
-        .edgesIgnoringSafeArea(.all)
-      
-      Text("Your content")
-    }
+    AngularGradient(gradient: Gradient(colors: [.red, .yellow, .green, .blue, .purple, .red]), center: .center)
   }
 }
 
