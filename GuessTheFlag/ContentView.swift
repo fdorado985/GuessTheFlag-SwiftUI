@@ -9,7 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
   var body: some View {
-    AngularGradient(gradient: Gradient(colors: [.red, .yellow, .green, .blue, .purple, .red]), center: .center)
+    Button(
+      action: {
+        print("Button was tapped")
+      },
+      label: {
+        HStack(spacing: 10.0) {
+          Image(systemName: "pencil")
+            .renderingMode(.original)
+          Text("Edit")
+        }
+      }
+    )
   }
 }
 
