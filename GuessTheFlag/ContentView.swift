@@ -47,21 +47,15 @@ struct ContentView: View {
         Spacer()
       }
     }
-    .alert(
-      isPresented: $showingScore,
-      content: {
-        Alert(
-          title: Text(scoreTitle),
-          message: Text("Your score is ???"),
-          dismissButton: .default(
-            Text("Continue"),
-            action: {
-              self.askQuestion()
-            }
-          )
-        )
-      }
-    )
+    .alert(isPresented: $showingScore) {
+      Alert(
+        title: Text(scoreTitle),
+        message: Text("Your score is ???"),
+        dismissButton: .default(Text("Continue")) {
+          self.askQuestion()
+        }
+      )
+    }
   }
 
   func flagTapped(_ number: Int) {
