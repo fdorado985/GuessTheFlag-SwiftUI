@@ -47,6 +47,13 @@ struct ContentView: View {
               Image(self.countries[number])
                 .renderingMode(.original)
                 .clipShape(Capsule())
+                .overlay(
+                  Capsule()
+                    .stroke(
+                      Color.black,
+                      lineWidth: 1
+                    )
+                )
             }
           )
         }
