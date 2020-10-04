@@ -54,6 +54,7 @@ struct ContentView: View {
                       lineWidth: 1
                     )
                 )
+                .shadow(color: .black, radius: 2)
             }
           )
         }
