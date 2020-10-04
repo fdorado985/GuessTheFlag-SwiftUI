@@ -61,6 +61,16 @@ struct ContentView: View {
         }
 
         Spacer()
+
+        HStack(spacing: 8.0) {
+          Text("Score:")
+            .foregroundColor(.white)
+            .font(.footnote)
+          Text("\(score)")
+            .foregroundColor(.white)
+            .font(.footnote)
+            .fontWeight(.bold)
+        }
       }
     }
     .alert(isPresented: $showingScore) {
