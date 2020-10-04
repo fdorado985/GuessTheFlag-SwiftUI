@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-  @State var countries = [
+  @State private var countries = [
     "Estonia", "France", "Germany",
     "Ireland", "Italy", "Nigeria",
     "Poland", "Russia", "Spain",
     "UK", "US"
   ].shuffled()
-  @State var correctAnswer = Int.random(in: 0...2)
+  @State private var correctAnswer = Int.random(in: 0...2)
   @State private var showingScore = false
   @State private var scoreTitle = ""
+  @State private var score = 0
 
   var body: some View {
     ZStack {
@@ -65,7 +66,7 @@ struct ContentView: View {
     .alert(isPresented: $showingScore) {
       Alert(
         title: Text(scoreTitle),
-        message: Text("Your score is ???"),
+        message: Text("Your score is \(score)"),
         dismissButton: .default(Text("Continue")) {
           self.askQuestion()
         }
@@ -76,8 +77,12 @@ struct ContentView: View {
   func flagTapped(_ number: Int) {
     if number == correctAnswer {
       scoreTitle = "Correct"
+      score += 1
     } else {
       scoreTitle = "Wrong"
+      if score > 0 {
+        score -= 1
+      }
     }
 
     showingScore = true
