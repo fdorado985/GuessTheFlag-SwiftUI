@@ -46,6 +46,7 @@ struct ContentView: View {
             label: {
               Image(self.countries[number])
                 .renderingMode(.original)
+                .clipShape(Capsule())
             }
           )
         }
