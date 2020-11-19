@@ -46,17 +46,7 @@ struct ContentView: View {
               self.flagTapped(number)
             },
             label: {
-              Image(self.countries[number])
-                .renderingMode(.original)
-                .clipShape(Capsule())
-                .overlay(
-                  Capsule()
-                    .stroke(
-                      Color.black,
-                      lineWidth: 1
-                    )
-                )
-                .shadow(color: .black, radius: 2)
+              FlagImage(flagName: self.countries[number])
             }
           )
         }
@@ -104,6 +94,24 @@ struct ContentView: View {
   func askQuestion() {
     countries.shuffle()
     correctAnswer = Int.random(in: 0...2)
+  }
+}
+
+struct FlagImage: View {
+  let flagName: String
+
+  var body: some View {
+    Image(flagName)
+      .renderingMode(.original)
+      .clipShape(Capsule())
+      .overlay(
+        Capsule()
+          .stroke(
+            Color.black,
+            lineWidth: 1
+          )
+      )
+      .shadow(color: .black, radius: 2)
   }
 }
 
