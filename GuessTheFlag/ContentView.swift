@@ -19,6 +19,7 @@ struct ContentView: View {
   @State private var scoreTitle = ""
   @State private var scoreMessage = ""
   @State private var score = 0
+  @State private var animationAmount = 0.0
 
   var body: some View {
     ZStack {
@@ -46,7 +47,15 @@ struct ContentView: View {
               self.flagTapped(number)
             },
             label: {
+              if number == correctAnswer {
               FlagImage(flagName: self.countries[number])
+                .rotation3DEffect(
+                  .degrees(animationAmount),
+                  axis: (x: 0.0, y: 1.0, z: 0.0)
+                )
+              } else {
+                FlagImage(flagName: self.countries[number])
+              }
             }
           )
         }
@@ -70,6 +79,7 @@ struct ContentView: View {
         message: Text(scoreMessage),
         dismissButton: .default(Text("Continue")) {
           self.askQuestion()
+          animationAmount = 0
         }
       )
     }
@@ -80,6 +90,9 @@ struct ContentView: View {
       scoreTitle = "Correct 🎉"
       scoreMessage = "You have won 1 point!"
       score += 1
+      withAnimation {
+        animationAmount += 360
+      }
     } else {
       scoreTitle = "Wrong 😢"
       scoreMessage = "That's the flag of \(countries[number])"
