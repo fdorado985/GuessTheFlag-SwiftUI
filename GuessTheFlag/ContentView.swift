@@ -20,6 +20,7 @@ struct ContentView: View {
   @State private var scoreMessage = ""
   @State private var score = 0
   @State private var animationAmount = 0.0
+  @State private var opacityAmount = 1.0
 
   var body: some View {
     ZStack {
@@ -55,6 +56,7 @@ struct ContentView: View {
                 )
               } else {
                 FlagImage(flagName: self.countries[number])
+                  .opacity(opacityAmount)
               }
             }
           )
@@ -80,6 +82,7 @@ struct ContentView: View {
         dismissButton: .default(Text("Continue")) {
           self.askQuestion()
           animationAmount = 0
+          opacityAmount = 1
         }
       )
     }
@@ -92,6 +95,7 @@ struct ContentView: View {
       score += 1
       withAnimation {
         animationAmount += 360
+        opacityAmount = 0.25
       }
     } else {
       scoreTitle = "Wrong 😢"
